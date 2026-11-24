@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🌦️ Weather App</h1>
+        <div class="search">
+            <input id="cityInput" type="text" placeholder="Enter a city..." maxlength="100">
+            <button id="searchButton">Search</button>
+        </div>
+        <ul id="cityResults"></ul>
+    </header>
+
+    <main>
+        <p id="message"></p>
+
+        <section id="weather" class="hidden">
+            <div class="card current">
+                <div id="currentIcon" class="big-icon"></div>
+                <div>
+                    <h2 id="cityName"></h2>
+                    <p class="temperature"><span id="temperature"></span>°C</p>
+                    <p id="description"></p>
+                    <p>Feels like: <span id="feelsLike"></span>°C</p>
+                    <p>Humidity: <span id="humidity"></span>% &nbsp;|&nbsp; Wind: <span id="wind"></span> km/h</p>
+                </div>
+            </div>
+
+            <div class="card-row">
+                <div class="card">
+                    <h3>💡 Today's tip</h3>
+                    <p id="tip"></p>
+                </div>
+                <div class="card">
+                    <h3>🚨 Emergency</h3>
+                    <p>Call <strong id="emergency"></strong></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>7-day forecast</h3>
+                <ul id="forecast"></ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
