@@ -138,6 +138,43 @@ main {
     font-weight: bold;
 }
 
+#hourly {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    overflow-x: auto;
+}
+
+#hourly li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 4px;
+    min-width: 65px;
+    background-color: #eef4f8;
+    border-radius: 8px;
+}
+
+#hourly .time {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#hourly .hour-icon {
+    font-size: 24px;
+    margin: 4px 0;
+}
+
+#hourly .hour-temp {
+    font-weight: bold;
+}
+
+#hourly .hour-rain {
+    font-size: 12px;
+    color: #1f6fb2;
+}
+
 /* Mobile screens: put the cards under each other */
 @media (max-width: 600px) {
     .card-row {

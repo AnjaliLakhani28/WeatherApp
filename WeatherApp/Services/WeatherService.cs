@@ -27,6 +27,7 @@ namespace WeatherApp.Services
             string url = $"{ForecastUrl}?latitude={lat}&longitude={lon}" +
                          "&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code,is_day" +
                          "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max" +
+                         "&hourly=temperature_2m,weather_code,precipitation_probability,is_day,is_day&forecast_hours=12" +
                          "&timezone=auto";
 
             HttpResponseMessage response = await _httpClient.GetAsync(url);
@@ -100,6 +101,22 @@ namespace WeatherApp.Services
                     Icon = WeatherCodeHelper.GetIcon(daily.WeatherCodes[i], true)
                 };
                 result.Forecast.Add(day);
+            }
+
+            if (data.Hourly != null)
+            {
+                OpenMeteoHourly hourly = data.Hourly;
+                for (int i = 0; i < hourly.Times.Count; i++)
+                {
+                    var hour = new HourForecast
+                    {
+                        Time = hourly.Times[i],
+                        Temperature = Math.Round(hourly.Temperatures[i]),
+                        RainChance = (int)(hourly.RainChances[i] ?? 0),
+                        Icon = WeatherCodeHelper.GetIcon(hourly.WeatherCodes[i], hourly.IsDay[i] == 1)
+                    };
+                    result.Hourly.Add(hour);
+                }
             }
 
             if (result.Forecast.Count > 0)

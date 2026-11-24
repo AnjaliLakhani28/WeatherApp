@@ -8,6 +8,7 @@ namespace WeatherApp.Models
         public string Timezone { get; set; } = "";
         public CurrentWeather Current { get; set; } = new();
         public List<DayForecast> Forecast { get; set; } = new();
+        public List<HourForecast> Hourly { get; set; } = new();
         public string Tip { get; set; } = "";
         public string EmergencyNumber { get; set; } = "";
     }
@@ -30,6 +31,14 @@ namespace WeatherApp.Models
         public int RainChance { get; set; }
         public double UvIndex { get; set; }
         public string Description { get; set; } = "";
+        public string Icon { get; set; } = "";
+    }
+
+    public class HourForecast
+    {
+        public string Time { get; set; } = "";
+        public double Temperature { get; set; }
+        public int RainChance { get; set; }
         public string Icon { get; set; } = "";
     }
 }

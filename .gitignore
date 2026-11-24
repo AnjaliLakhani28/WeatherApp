@@ -2,3 +2,4 @@ bin/
 obj/
 .vs/
 *.user
+/WeatherApp/Properties/PublishProfiles/site110605-WebDeploy.pubxml

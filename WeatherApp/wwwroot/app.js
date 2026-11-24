@@ -30,6 +30,13 @@ async function loadWeather(city) {
     }
 }
 
+function formatHour(timeText) {
+    const hour = Number(timeText.substring(11, 13));
+    if (hour === 0) return "12am";
+    if (hour === 12) return "12pm";
+    return hour < 12 ? `${hour}am` : `${hour - 12}pm`;
+}
+
 // Put the weather data on the page.
 // I use textContent (not innerHTML) so data from the API can't run as code.
 function showWeather(cityName, weather) {
@@ -69,6 +76,34 @@ function showWeather(cityName, weather) {
 
         item.append(dayText, conditionsText, rainText, tempText);
         forecastList.appendChild(item);
+    }
+
+    const hourlyList = document.getElementById("hourly");
+    hourlyList.innerHTML = "";   // clear the old list
+
+    for (let i = 0; i < weather.hourly.length; i++) {
+        const hour = weather.hourly[i];
+        const hourName = i === 0 ? "Now" : formatHour(hour.time);
+        const item = document.createElement("li");
+
+        const timeText = document.createElement("span");
+        timeText.className = "time";
+        timeText.textContent = hourName;
+
+        const iconText = document.createElement("span");
+        iconText.className = "hour-icon";
+        iconText.textContent = hour.icon;
+
+        const tempText = document.createElement("span");
+        tempText.className = "hour-temp";
+        tempText.textContent = `${hour.temperature}°`;
+
+        const rainText = document.createElement("span");
+        rainText.className = "rain";
+        rainText.textContent = `💧 ${hour.rainChance}%`;
+
+        item.append(timeText, iconText, tempText, rainText);
+        hourlyList.appendChild(item);
     }
 
     document.getElementById("weather").classList.remove("hidden");

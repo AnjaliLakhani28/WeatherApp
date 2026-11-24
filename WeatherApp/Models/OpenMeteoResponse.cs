@@ -15,6 +15,9 @@ namespace WeatherApp.Models
 
         [JsonPropertyName("daily")]
         public OpenMeteoDaily? Daily { get; set; }
+
+        [JsonPropertyName("hourly")]
+        public OpenMeteoHourly? Hourly { get; set; }
     }
 
     public class OpenMeteoCurrent
@@ -60,6 +63,19 @@ namespace WeatherApp.Models
         public List<double?> UvIndexes { get; set; } = new();
     }
 
+    public class OpenMeteoHourly
+    {
+        [JsonPropertyName("time")]
+        public List<string> Times { get; set; } = new();
+        [JsonPropertyName("temperature_2m")]
+        public List<double> Temperatures { get; set; } = new();
+        [JsonPropertyName("weather_code")]
+        public List<int> WeatherCodes { get; set; } = new();
+        [JsonPropertyName("precipitation_probability")]
+        public List<double?> RainChances { get; set; } = new();
+        [JsonPropertyName("is_day")]
+        public List<int> IsDay { get; set; } = new();
+    }
     // Response from the city search API
     public class GeocodingResponse
     {
